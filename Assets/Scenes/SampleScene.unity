@@ -596,10 +596,10 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 55
-  cameraContainer: {fileID: 1753933521}
+  cameraContainer: {fileID: 963194228}
   minXLook: -85
   maxXLook: 85
-  lookSensitivity: 0.1
+  lookSensitivity: 0.5
 --- !u!114 &1768560481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52be72444b3e694eba6c0da9048dece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1768560480}
+  controller: {fileID: 0}
 --- !u!212 &1768560482
 SpriteRenderer:
   m_ObjectHideFlags: 0
