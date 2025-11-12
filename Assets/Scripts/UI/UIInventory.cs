@@ -188,4 +188,45 @@ public class UIInventory : MonoBehaviour
         unequipButton.SetActive(selectedItem.type == ItemType.Equipable && slots[index].equipped);
         dropButton.SetActive(true);
     }
+
+    //사용하기
+    public void OnUseButton()
+    {
+        if (selectedItem.type == ItemType.Consumable)
+        {
+            for (int i = 0; i < selectedItem.consumbales.Length; i++)
+            {
+                switch(selectedItem.consumbales[i].type)
+                {
+                    case ConsumableType.Health:
+                        condition.Heal(selectedItem.consumbales[i].value);
+                        break;
+                    case ConsumableType.Hunger:
+                        condition.Eat(selectedItem.consumbales[i].value);
+                        break;
+                }
+            }
+            RemoveSelectedItem(); //정보 제거
+        }
+    }
+
+    //버리기
+    public void OnDropButton()
+    {
+        ThrowItem(selectedItem); //눈앞에서 아이템이 던져짐
+        RemoveSelectedItem(); //정보 제거
+    }
+
+    void RemoveSelectedItem() //버려졌다면 UI 정보 변경해줘야함
+    {
+        slots[selectedItemIndex].quantity--;
+        if (slots[selectedItemIndex].quantity <= 0)
+        {
+            selectedItem = null;
+            slots[selectedItemIndex].item = null;
+            selectedItemIndex = -1;
+            ClearSelectedItemWindow();
+        }
+        UpdateUI();
+    }
 }
