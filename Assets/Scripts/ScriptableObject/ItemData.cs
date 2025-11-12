@@ -39,4 +39,7 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable")]
     public ItemDataConsumbale[] consumbales; //체력과 배고픔 등 여러 효과
+
+    [Header("Equip")]
+    public GameObject equipPrefab;
 }
