@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class Player : MonoBehaviour
 {
     public PlayerController controller;
     public PlayerCondition condition;
+
+    public ItemData itemData;
+    public Action addItem; //델리게이트 -> 구독이 되어있으면 실행시키도록
 
     private void Awake()
     {
