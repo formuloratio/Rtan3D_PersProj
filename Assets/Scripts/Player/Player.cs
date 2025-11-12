@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public ItemData itemData;
     public Action addItem; //델리게이트 -> 구독이 되어있으면 실행시키도록
 
+    public Transform dropPosition;
+
     private void Awake()
     {
         CharacterManger.Instance.Player = this;

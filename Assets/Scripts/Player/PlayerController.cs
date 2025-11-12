@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,7 +20,9 @@ public class PlayerController : MonoBehaviour
     private float camCurXRot; //inputAction에서 받아온 마우스 델타 값 저장
     public float lookSensitivity; //민감도 조절
     private Vector2 mouseDelta;
+    public bool canLook = true; //인벤토리 열었을 때 커서 보이게 컨트롤
 
+    public Action inventrory;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -40,7 +43,10 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook)
+        {
+            CameraLook();
+        }
     }
 
     void Move()
@@ -116,5 +122,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            inventrory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked; //인벤토리 안 열려져 있으면
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
     }
 }

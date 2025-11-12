@@ -15,11 +15,11 @@ public class Interaction : MonoBehaviour
     private IInteractable curInteractable;
 
     public TextMeshProUGUI promptText; //나중에 UI분리해서 드래그앤드롭 없이 연결해보기
-    private Camera camera;
+    private Camera newCamera;
 
     void Start()
     {
-        camera = Camera.main;
+        newCamera = Camera.main;
     }
 
     void Update()
@@ -29,7 +29,7 @@ public class Interaction : MonoBehaviour
         {
             lastCheckTime = Time.time; //현재시간 넣기
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); //화면 중앙에서 레이 발사
+            Ray ray = newCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2)); //화면 중앙에서 레이 발사
                                                                                                  //위는 오리진이고, 방향도 필요한데 카메라가 찍고 있는 방향이 있기 때문에 ray가 나가는 시작점만 잡아주면 된다.
             RaycastHit hit; // 부딪친 정보를 담을 변수
 

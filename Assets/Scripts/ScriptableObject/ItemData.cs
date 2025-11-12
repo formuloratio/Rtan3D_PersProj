@@ -35,7 +35,7 @@ public class ItemData : ScriptableObject
 
     [Header("Stacking")]
     public bool canStack; //여러개 가질 수 있는 아이템인지
-    public int maxStacjAmount; //최대 몇개까지 쌓을 수 있는지
+    public int maxStackAmount; //최대 몇개까지 쌓을 수 있는지
 
     [Header("Consumable")]
     public ItemDataConsumbale[] consumbales; //체력과 배고픔 등 여러 효과
