@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_Sword
   m_EditorClassIdentifier: 
   displayName: "\uCE7C"
-  description: "\uACF5\uACA9\uC6A9 \uCE7C\uC785\uB2C8\uB2E4."
+  description: "\uC774\uB3D9\uC18D\uB3C4\uB97C \uC62C\uB824\uC90D\uB2C8\uB2E4"
   type: 0
   icon: {fileID: 21300000, guid: 4f2f320a217307a48a107491b1d17ebb, type: 3}
   dropPrefab: {fileID: 8815302890843913353, guid: 56d31d695685a064c98e48f319a5d8c6, type: 3}
@@ -21,3 +21,5 @@ MonoBehaviour:
   maxStackAmount: 0
   consumbales: []
   equipPrefab: {fileID: 2666879283124250550, guid: e23ee3161ffdd6241b1a3881c191a4fc, type: 3}
+  isBuffItem: 1
+  speedBuffAmount: 10

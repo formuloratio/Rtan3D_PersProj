@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Jump")]
+    public float jumpPower;
+
     [Header("Movement")]
     public float moveSpeed;
     private float originalMoveSpeed; //버프 속도 변경 전의 원래 속도 저장
-    public float jumpPower;
     private Vector2 curMovementInput;
     public LayerMask groundLayerMask; //플레이어는 감지되지 않도록 따로 설정 필요
 
@@ -142,25 +144,48 @@ public class PlayerController : MonoBehaviour
         canLook = !toggle;
     }
 
-    // **새로운 메서드:** 스피드 버프 코루틴
+    //스피드 버프 코루틴
     public void ApplySpeedBuff(float speed, float duration)
     {
-        // 기존의 버프가 있다면 취소하고 새로운 버프를 시작 (옵션: 중첩 가능 여부에 따라 변경 가능)
+        //기존의 버프가 있다면 취소하고 새로운 버프를 시작
         StopCoroutine("SpeedBuffCoroutine");
         StartCoroutine(SpeedBuffCoroutine(speed, duration));
     }
 
     private IEnumerator SpeedBuffCoroutine(float speed, float duration)
     {
-        // 1. 버프 적용: 현재 속도 증가
-        moveSpeed = originalMoveSpeed + speed;
+        moveSpeed = originalMoveSpeed + speed; //버프 적용(스피드 중복 향상 방지)
         Debug.Log($"속도 버프 효과 적용: 속도 {moveSpeed}, 지속시간 {duration}s");
 
-        // 2. 지정된 시간 동안 대기
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration); //지속 기간
 
-        // 3. 버프 해제: 기본 속도로 복귀
-        moveSpeed = originalMoveSpeed;
+        moveSpeed = originalMoveSpeed; //버프 해제
         Debug.Log($"속도 버프 종료. 속도: {moveSpeed}");
+    }
+
+    public void EquipSpeedUP(float speedAmount)
+    {
+        moveSpeed += speedAmount; //버프 적용
+        Debug.Log($"속도 버프 효과 적용: 속도 {moveSpeed}");
+    }
+
+    public void UnEquipSpeedDown(float speedAmount)
+    {
+        // 해제 시 현재 속도에서 속도 감소
+        moveSpeed -= speedAmount;
+        Debug.Log($"장비 버프 해제: 속도 -{speedAmount}. 현재 속도: {moveSpeed}");
+    }
+
+    public void EquipJumpUP(float jumpAmount)
+    {
+        jumpPower += jumpAmount; //버프 적용
+        Debug.Log($"점프 힘 버프 효과 적용: 점프 힘 {jumpPower}");
+    }
+
+    public void UnEquipJumpDown(float jumpAmount)
+    {
+        // 해제 시 현재 속도에서 속도 감소
+        jumpPower -= jumpAmount;
+        Debug.Log($"장비 버프 해제: 점프 힘 -{jumpAmount}. 현재 점프 힘: {jumpPower}");
     }
 }

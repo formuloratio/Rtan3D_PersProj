@@ -44,4 +44,9 @@ public class ItemData : ScriptableObject
 
     [Header("Equip")]
     public GameObject equipPrefab;
+
+    [Header("EquipBuff")] // Buff 관련 정보 추가
+    public bool isBuffItem = false;
+    public float speedBuffAmount; // 추가할 이동 속도
+    public float jumpBuffAmount; // 추가할 점프 힘
 }

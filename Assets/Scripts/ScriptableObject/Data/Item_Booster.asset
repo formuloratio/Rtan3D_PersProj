@@ -21,6 +21,8 @@ MonoBehaviour:
   maxStackAmount: 0
   consumbales:
   - type: 2
-    value: 20
+    value: 5
     duration: 10
   equipPrefab: {fileID: 0}
+  isBuffItem: 0
+  speedBuffAmount: 0

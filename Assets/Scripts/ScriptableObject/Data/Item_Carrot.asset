@@ -22,5 +22,8 @@ MonoBehaviour:
   consumbales:
   - type: 0
     value: 10
+    duration: 0
   - type: 1
     value: 20
+    duration: 0
+  equipPrefab: {fileID: 0}

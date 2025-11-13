@@ -265,6 +265,14 @@ public class UIInventory : MonoBehaviour
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
         CharacterManger.Instance.Player.equip.EquipNew(selectedItem);
+
+        if (selectedItem.isBuffItem)
+        {
+            // PlayerController의 EquipSpeedUP 메서드 호출
+            controller.EquipSpeedUP(selectedItem.speedBuffAmount);
+            controller.EquipJumpUP(selectedItem.jumpBuffAmount);
+        }
+
         UpdateUI();
 
         SelectItem(selectedItemIndex);
@@ -272,6 +280,13 @@ public class UIInventory : MonoBehaviour
 
     void UnEquip(int index)
     {
+        ItemData itemToUnequip = slots[index].item; // 해제할 아이템
+        if (itemToUnequip != null && itemToUnequip.isBuffItem)
+        {
+            controller.UnEquipSpeedDown(itemToUnequip.speedBuffAmount); //장비 버프 해제에 따른 속도 감소
+            controller.UnEquipJumpDown(itemToUnequip.jumpBuffAmount);
+        }
+
         slots[index].equipped = false;
         CharacterManger.Instance.Player.equip.UnEquip();
         UpdateUI();
