@@ -10,6 +10,8 @@ public interface IDamageIble
 
 public class PlayerCondition : MonoBehaviour, IDamageIble
 {
+    public float hungrySpeed;
+
     public UICondition uiCondition;
 
     Condition health { get { return uiCondition.health; } }
@@ -22,7 +24,7 @@ public class PlayerCondition : MonoBehaviour, IDamageIble
 
     void Update()
     { // 플레이어 상태 변화
-        hunger.Subtract(hunger.passiveValue * Time.deltaTime);
+        hunger.Subtract(hunger.passiveValue * Time.deltaTime * hungrySpeed);
         stamina.Add(stamina.passiveValue * Time.deltaTime);
 
         if (hunger.curValue == 0f)

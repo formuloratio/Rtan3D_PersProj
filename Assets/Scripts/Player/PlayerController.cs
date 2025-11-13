@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
             new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down)
         };
 
-        // 각 레이마다 바닥에 닿아있는지 확인
+        //각 레이마다 바닥에 닿아있는지 확인
         //foreach (Ray ray in rays)
         //{
         //    if (Physics.Raycast(ray, 0.1f, groundLayerMask))
