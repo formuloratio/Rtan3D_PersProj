@@ -8,7 +8,7 @@ public class Jump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        UnityEngine.Debug.Log("Crash!");
+        UnityEngine.Debug.Log("점프!");
         collision.rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
 }

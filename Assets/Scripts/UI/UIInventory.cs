@@ -179,10 +179,26 @@ public class UIInventory : MonoBehaviour
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
+        //for (int i = 0; i < selectedItem.consumbales.Length; i++)
+        //{
+        //    selectedStatName.text += selectedItem.consumbales[i].type.ToString() + "\n";
+        //    selectedStatValue.text += selectedItem.consumbales[i].value.ToString() + "\n";
+        //}
         for (int i = 0; i < selectedItem.consumbales.Length; i++)
         {
-            selectedStatName.text += selectedItem.consumbales[i].type.ToString() + "\n";
-            selectedStatValue.text += selectedItem.consumbales[i].value.ToString() + "\n";
+            ItemDataConsumbale consumable = selectedItem.consumbales[i];
+            selectedStatName.text += consumable.type.ToString() + "\n";
+
+            if (consumable.type == ConsumableType.SpeedUP)
+            {
+                // 버프의 경우, 증가량과 지속 시간을 함께 표시
+                selectedStatValue.text += $"+{consumable.value} ({consumable.duration}s)\n";
+            }
+            else
+            {
+                // 체력, 배고픔의 경우, 회복량만 표시
+                selectedStatValue.text += $"+{consumable.value}\n";
+            }
         }
 
         useButton.SetActive(selectedItem.type == ItemType.Consumable);
@@ -205,6 +221,13 @@ public class UIInventory : MonoBehaviour
                         break;
                     case ConsumableType.Hunger:
                         condition.Eat(selectedItem.consumbales[i].value);
+                        break;
+                    case ConsumableType.SpeedUP:
+                        // value = 속도 증가량, duration = 지속 시간
+                        controller.ApplySpeedBuff(
+                            selectedItem.consumbales[i].value,
+                            selectedItem.consumbales[i].duration
+                        );
                         break;
                 }
             }

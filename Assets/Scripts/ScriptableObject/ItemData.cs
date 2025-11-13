@@ -13,14 +13,16 @@ public enum ItemType
 public enum ConsumableType
 {
     Health, // 체력회복
-    Hunger // 배고픔회복
+    Hunger, // 배고픔회복
+    SpeedUP // 속도버프
 }
 
 [Serializable]
 public class ItemDataConsumbale
 {
     public ConsumableType type;
-    public float value; //회복량
+    public float value; //회복량, 버프량 등의 값
+    public float duration; //지속시간 (버프 아이템일 경우)
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]

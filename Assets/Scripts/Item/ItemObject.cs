@@ -22,6 +22,7 @@ public class ItemObject : MonoBehaviour, IInteractable
     {
         CharacterManger.Instance.Player.itemData = data;
         CharacterManger.Instance.Player.addItem?.Invoke(); //구독이 되어있으면 실행
+
         Destroy(gameObject);
     }
 }
